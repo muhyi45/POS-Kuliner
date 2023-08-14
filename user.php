@@ -60,7 +60,7 @@ while ($record = mysqli_fetch_array($query)) {
                                     <div class="col-lg-4">
                                         <div class="form-floating mb-3">
                                             <select class="form-select" aria-label="Default select example" name="level" required>
-                                                <option selected hidden value="0">Pilih Level</option>
+                                                <option selected hidden value="">Pilih Level</option>
                                                 <option value="1">Admin</option>
                                                 <option value="2">Kasir</option>
                                                 <option value="3">Pelayan</option>
@@ -189,7 +189,7 @@ while ($record = mysqli_fetch_array($query)) {
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-floating mb-3">
-                                            <input required type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="username" value="<?php echo $row['username']?>">
+                                            <input <?php echo(($row['username'] == $_SESSION['username_kuliner'])) ? 'disabled' : '' ; ?> required type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="username" value="<?php echo $row['username']?>">
                                             <label for="floatingInput">Username</label>
                                             <div class="invalid-feedback">
                                                 Masukan Email.
