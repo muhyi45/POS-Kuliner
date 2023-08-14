@@ -214,9 +214,9 @@ while ($record = mysqli_fetch_array($query)) {
                                         $data = array("Owner/Admin", "Kasir", "Pelayan", "Dapur");
                                         foreach($data as $key => $value){
                                             if($row['level'] == $key+1){
-                                                echo "<option selected value='$key' $value>$value</option>";
+                                                echo "<option selected value= ".($key+1)." $value>$value</option>";
                                             }else{
-                                                echo "<option value='$key' $value>$value</option>";
+                                                echo "<option value= ".($key+1)." $value>$value</option>";
                                             }
 
                                         }
@@ -232,7 +232,7 @@ while ($record = mysqli_fetch_array($query)) {
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary" name="input_user_validate" value="12345">Save changes</button>
+                                    <button type="submit" class="btn btn-primary" name="update_user_validate" value="12345">Save changes</button>
                                 </div>
                             </form>
                         </div>
@@ -243,18 +243,29 @@ while ($record = mysqli_fetch_array($query)) {
 
              <!-- Modal Hapus-->
              <div class="modal fade" id="ModalDelete<?php echo $row['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-xl modal-fullscreen-md-down">
+                <div class="modal-dialog modal-md modal-fullscreen-md-down">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Hapus User</h1>
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Data User</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            ...
+                        <form class="needs-validation" novalidate action="proses/proses_delete_user.php" method="POST">
+                        <input type="hidden" value="<?php echo $row['id']?>" name="id">        
+                        <div class="col-lg-12">
+                            <?php
+                            if($row['username'] == $_SESSION['username_kuliner']){
+                                echo "<div class='alert alert-danger'>Anda tidak dapat menghapus akun sendiri</div>";
+                            }else{
+                                echo "Apakah anda yakin ingin menghapus user <b>$row[username]</b>";
+                            }
+                            ?>                              
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-danger" name="input_user_validate" value="12345" <?php echo(($row['username'] == $_SESSION['username_kuliner'])) ? 'disabled' : '' ; ?>>Delete</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
