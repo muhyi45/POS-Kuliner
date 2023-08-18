@@ -1,5 +1,6 @@
 <?php
 include "connect.php";
+$id = (isset($_POST['no'])) ? htmlentities($_POST['no']) : "";
 $nama_menu = (isset($_POST['nama_menu'])) ? htmlentities($_POST['nama_menu']) : "";
 $keterangan = (isset($_POST['keterangan'])) ? htmlentities($_POST['keterangan']) : "";
 $kat_menu = (isset($_POST['kat_menu'])) ? htmlentities($_POST['kat_menu']) : "";
@@ -38,19 +39,19 @@ $stok = (isset($_POST['stok'])) ? htmlentities($_POST['stok']) : 0;
 if($statusUpload == 0){
     $message = '<script> alert("'.$message.' , Gambar tidak dapat di upload") window.location="../menu"</script>';
 }else{
-    $select = mysqli_query($conn, "SELECT * FROM tb_daftar_menu WHERE nama_menu = '$nama_menu'");
+    $select = mysqli_query($conn, "SELECT * FROM tb_daftar_menu WHERE nama_menu = '$nama_menu' AND no != '$id' ");
     if(mysqli_num_rows($select)> 0 ){
         $message = '<script> alert("Nama menu dimasukan sudah ada")
             window.location="../menu"</script>';
     }else{
         if(move_uploaded_file($_FILES['foto']['tmp_name'],$target_file)){
-            $query = mysqli_query($conn, "INSERT INTO tb_daftar_menu (foto,nama_menu,keterangan,kategori,harga,stok) values ('" . $kode_rand.$_FILES['foto']['name']."','$nama_menu','$keterangan','$kat_menu','$harga','$stok')");
+            $query = mysqli_query($conn, "UPDATE tb_daftar_menu SET foto='" . $kode_rand . $_FILES['foto']['name']."', nama_menu = '$nama_menu', keterangan = '$keterangan', kategori='$kat_menu', harga = '$harga', stok = '$stok' WHERE no='$id'");
             if($query){
-                $message = '<script> alert("Menu berhasil dimasukan")
+                $message = '<script> alert("Menu berhasil diedit")
             window.location="../menu"</script>';
             }else{
-                $message = '<script> alert("Menu gagal dimasukan")
-            window.location="../menu"</script>'; // tadi message na kadieu?
+                $message = '<script> alert("Menu gagal diedit")
+            window.location="../menu"</script>';
             }
             }else{
                 $message = '<script> alert("Maaf terjadi kesalahan dalam upload menu")

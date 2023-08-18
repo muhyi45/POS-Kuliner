@@ -18,7 +18,8 @@ $message = "";
         $query = mysqli_query($conn, "UPDATE tb_user SET nama='$name', username='$username', password='$password', nomor_telepon='$nomor_telepon', level='$level' WHERE id='$id'");
         $message = '<script></script>';
         if(!$query){
-            $message = '<script> alert("Data gagal diupdate")</script>';
+            $message = '<script> alert("Data gagal diupdate")
+            window.location="../user"</script>';
         }
         else{
             $message = '<script> alert("Data berhasil diupdate")
