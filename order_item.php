@@ -2,10 +2,10 @@
 include "proses/connect.php";
 
 $query = mysqli_query($conn, "SELECT *, SUM(harga*jumlah) AS harganya FROM tb_list_order
-    LEFT JOIN tb_order ON tb_order.id_order = tb_list_order.order
+    LEFT JOIN tb_order ON tb_order.id_order = tb_list_order.kode_order
     LEFT JOIN tb_daftar_menu ON tb_daftar_menu.no = tb_list_order.menu
     GROUP BY id_list_order
-    HAVING tb_list_order.order = ". 3000);
+    HAVING tb_list_order.kode_order = ". 3000);
    
     
     $meja = $_GET['meja'];
@@ -32,6 +32,7 @@ while ($record = mysqli_fetch_array($getInfoOrder)) {
             Halaman Order Item
         </div>
         <div class="card-body">
+            <a href="order" class="btn btn-info mb-3"><i class="bi bi-arrow-left-circle-fill"></i> Back</a>
             <div class="row">
                 <div class="col-lg-3">
                     <div class="form-floating mb-3">
