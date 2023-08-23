@@ -9,6 +9,7 @@
         if ($hasil){
             $_SESSION['username_kuliner'] = $username;
             $_SESSION['level_kuliner'] = $hasil['level'];
+            $_SESSION['id_kuliner'] = $hasil['id'];
             header("Location:../home");
         } else { ?>
             <script>
