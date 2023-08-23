@@ -62,14 +62,6 @@ while ($record = mysqli_fetch_array($query)) {
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-lg-12 mb-3">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control" id="catatan" placeholder="Catatan" name="catatan">
-                                            <label for="catatan">Catatan</label>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                     <button type="submit" class="btn btn-primary" name="input_order_validate" value="12345">Buat Order</button>
@@ -127,14 +119,6 @@ while ($record = mysqli_fetch_array($query)) {
                                                     <div class="invalid-feedback">
                                                         Masukan Nama Pelanggan
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-12 mb-3">
-                                                <div class="form-floating">
-                                                    <input type="text" class="form-control" id="catatan" placeholder="Catatan" name="catatan" value="<?php echo $row['catatan'] ?>">
-                                                    <label for="catatan">Catatan</label>
                                                 </div>
                                             </div>
                                         </div>
