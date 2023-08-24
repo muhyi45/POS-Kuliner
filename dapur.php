@@ -176,6 +176,9 @@ $select_menu = mysqli_query($conn, "SELECT no,nama_menu FROM tb_daftar_menu");
                             <?php
                                 $no = 1;
                                 foreach ($result as $row) {
+                                    if($row['status'] != 2){
+
+                                    
                             ?>
                                 <tr>
                                     <td>
@@ -208,12 +211,13 @@ $select_menu = mysqli_query($conn, "SELECT no,nama_menu FROM tb_daftar_menu");
                                     <td>
                                         <div class="d-flex">
                                             <button class="<?php echo (!empty($row['status'])) ? "btn btn-secondary btn-sm me-1 disabled" : "btn btn-primary btn-sm me-1" ; ?>" data-bs-toggle="modal" data-bs-target="#terima<?php echo $row['id_list_order'] ?>">Terima</button>
-                                            <button class="<?php echo (empty($row['status']) || $row['status']!=1) ? "btn btn-secondary btn-sm me-1 disabled" : "btn btn-success btn-sm me-1 text-nowrap" ; ?>" data-bs-toggle="modal" data-bs-target="#siapsaji<?php echo $row['id_list_order'] ?>">Siap Saji</button>
+                                            <button class="<?php echo (empty($row['status']) || $row['status']!=1) ? "btn btn-secondary btn-sm me-1 disabled text-nowrap" : "btn btn-success btn-sm me-1 text-nowrap" ; ?>" data-bs-toggle="modal" data-bs-target="#siapsaji<?php echo $row['id_list_order'] ?>">Siap Saji</button>
                                         </div>
                                     </td>
                                 </tr>
                             <?php
                                 }
+                            }
                             ?>
                         </tbody>
                     </table>

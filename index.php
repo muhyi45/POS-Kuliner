@@ -72,6 +72,16 @@
                 $page = "home.php";
                 include "main.php";
             }
+
+        }elseif (isset ($_GET['x']) && $_GET['x']=='viewitem'){
+            if($_SESSION['level_kuliner']==1){
+            $page = "view_item.php";
+            include "main.php";
+        }else{
+            $page = "home.php";
+            include "main.php";
+        }
+
             }else{
                 $page = "home.php";
                 include "main.php";
