@@ -340,7 +340,13 @@ $select_menu = mysqli_query($conn, "SELECT no,nama_menu FROM tb_daftar_menu");
                                         <?php echo $row['jumlah'] ?>
                                     </td>
                                     <td>
-                                        <?php echo $row['status'] ?>
+                                        <?php
+                                            if($row['status']==1){
+                                                echo "<span class='badge text-bg-warning'>Masuk ke dapur</span>";
+                                            }elseif($row['status']==2){
+                                                echo "<span class='badge text-bg-primary'>Siap saji</span>";
+                                            }
+                                        ?>
                                     </td>
                                     <td>
                                         <?php echo $row['catatan'] ?>
