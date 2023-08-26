@@ -1,32 +1,25 @@
 <?php
 include "proses/connect.php";
 
-$query = mysqli_query($conn, "SELECT *, SUM(harga*jumlah) AS harganya FROM tb_list_order
-    LEFT JOIN tb_order ON tb_order.id_order = tb_list_order.kode_order
-    LEFT JOIN tb_daftar_menu ON tb_daftar_menu.no = tb_list_order.menu
-    LEFT JOIN tb_bayar ON tb_bayar.id_bayar = tb_order.id_order
-    GROUP BY id_list_order
-    HAVING tb_list_order.kode_order = $_GET[order]");
-
+$queryDetailOrder = mysqli_query($conn, "SELECT * FROM tb_order WHERE tb_order.id_order = '" . $_GET['order'] . "'");
 
 $meja = $_GET['meja'];
 $pelanggan = $_GET['pelanggan'];
-$kode = $_GET['order'];
+$kode = "";
+while ($record = mysqli_fetch_assoc($queryDetailOrder)) {
+    // $kode = $record; // This line should be replaced with the following line
+    $kode = $record['kode_order'];
+}
+
+$query = mysqli_query($conn, "SELECT *, (tb_list_order.jumlah * tb_daftar_menu.harga) as harganya FROM tb_list_order LEFT JOIN tb_daftar_menu ON tb_list_order.menu = tb_daftar_menu.no where kode_order = '$kode'");
+
+$result = []; // Initialize the $result array
 while ($record = mysqli_fetch_array($query)) {
     $result[] = $record;
 }
 
-
-//$getInfoOrder = mysqli_query($conn, "SELECT * FROM tb_order WHERE id_order = order");
-
-//while ($record = mysqli_fetch_array($getInfoOrder)) {
-// $meja = $record['meja'];
-// $pelanggan = $record['pelanggan'];
-// $kode = $record['id_order'];
-//}
-$select_menu = mysqli_query($conn, "SELECT no,nama_menu FROM tb_daftar_menu");
+$select_menu = mysqli_query($conn, "SELECT no, nama_menu FROM tb_daftar_menu");
 ?>
-
 <div class="col-lg-9 mt-2">
     <div class="card">
         <div class="card-header">
@@ -65,16 +58,17 @@ $select_menu = mysqli_query($conn, "SELECT no,nama_menu FROM tb_daftar_menu");
                         <div class="modal-body">
                             <form class="needs-validation" novalidate action="proses/proses_input_orderitem.php" method="POST">
                                 <input type="hidden" name="kode_order" value="<?php echo $kode ?>" id="">
+                                <input type="hidden" name="id_order" value="<?php echo $_GET['order']  ?>" id="">
                                 <input type="hidden" name="meja" value="<?php echo $meja ?>" id="">
                                 <input type="hidden" name="pelanggan" value="<?php echo $pelanggan ?>" id="">
                                 <div class="row">
                                     <div class="col-lg-8">
                                         <div class="form-floating mb-3">
                                             <select class="form-select" name="menu" id="">
-                                                <option selected hidden value="">Pilih Menu</option>
+                                                <option>Pilih Menu</option>
                                                 <?php
                                                 foreach ($select_menu as $value) {
-                                                    echo "<option value=$value[id]>$value[nama_menu]</option>";
+                                                    echo "<option value=$value[no]>$value[nama_menu]</option>";
                                                 }
                                                 ?>
                                             </select>
@@ -132,10 +126,11 @@ $select_menu = mysqli_query($conn, "SELECT no,nama_menu FROM tb_daftar_menu");
                                 </div>
                                 <div class="modal-body">
                                     <form class="needs-validation" novalidate action="proses/proses_edit_orderitem.php" method="POST">
-                                        <input type="hidden" name="id" value="<?php echo $row['$id_list_order'] ?>">
-                                        <input type="hidden" name="kode_order" value="<?php echo $kode ?>">
-                                        <input type="hidden" name="meja" value="<?php echo $meja ?>">
-                                        <input type="hidden" name="pelanggan" value="<?php echo $pelanggan ?>">
+                                        <input type="hidden" name="kode_order" value="<?php echo $kode ?>" id="">
+                                        <input type="hidden" name="id" value="<?php echo $row['id_list_order'] ?>" id="">
+                                        <input type="hidden" name="id_order" value="<?php echo $_GET['order']  ?>" id="">
+                                        <input type="hidden" name="meja" value="<?php echo $meja ?>" id="">
+                                        <input type="hidden" name="pelanggan" value="<?php echo $pelanggan ?>" id="">
                                         <div class="row">
                                             <div class="col-lg-8">
                                                 <div class="form-floating mb-3">
@@ -144,9 +139,9 @@ $select_menu = mysqli_query($conn, "SELECT no,nama_menu FROM tb_daftar_menu");
                                                         <?php
                                                         foreach ($select_menu as $value) {
                                                             if ($row['menu'] == $value['no']) {
-                                                                echo "<option selected value=$value[id]>$value[nama_menu]</option>";
+                                                                echo "<option selected value=$value[no]>$value[nama_menu]</option>";
                                                             } else {
-                                                                echo "<option value=$value[id]>$value[nama_menu]</option>";
+                                                                echo "<option value=$value[no]>$value[nama_menu]</option>";
                                                             }
                                                         }
                                                         ?>
@@ -197,10 +192,11 @@ $select_menu = mysqli_query($conn, "SELECT no,nama_menu FROM tb_daftar_menu");
                                 </div>
                                 <div class="modal-body">
                                     <form class="needs-validation" novalidate action="proses/proses_delete_orderitem.php" method="POST">
-                                        <input type="hidden" value="<?php echo $row['id_list_order'] ?>" name="id">
-                                        <input type="hidden" name="kode_order" value="<?php echo $kode ?>">
-                                        <input type="hidden" name="meja" value="<?php echo $meja ?>">
-                                        <input type="hidden" name="pelanggan" value="<?php echo $pelanggan ?>">
+                                        <input type="hidden" name="kode_order" value="<?php echo $kode ?>" id="">
+                                        <input type="hidden" name="id" value="<?php echo $row['id_list_order'] ?>" id="">
+                                        <input type="hidden" name="id_order" value="<?php echo $_GET['order']  ?>" id="">
+                                        <input type="hidden" name="meja" value="<?php echo $meja ?>" id="">
+                                        <input type="hidden" name="pelanggan" value="<?php echo $pelanggan ?>" id="">
                                         <div class="col-lg-12">
                                             Apakah anda ingin menghapus <b><?php echo $row['nama_menu'] ?></b>
                                         </div>
@@ -341,11 +337,11 @@ $select_menu = mysqli_query($conn, "SELECT no,nama_menu FROM tb_daftar_menu");
                                     </td>
                                     <td>
                                         <?php
-                                            if($row['status']==1){
-                                                echo "<span class='badge text-bg-warning'>Masuk ke dapur</span>";
-                                            }elseif($row['status']==2){
-                                                echo "<span class='badge text-bg-primary'>Siap saji</span>";
-                                            }
+                                        if ($row['status'] == 1) {
+                                            echo "<span class='badge text-bg-warning'>Masuk ke dapur</span>";
+                                        } elseif ($row['status'] == 2) {
+                                            echo "<span class='badge text-bg-primary'>Siap saji</span>";
+                                        }
                                         ?>
                                     </td>
                                     <td>
@@ -356,8 +352,8 @@ $select_menu = mysqli_query($conn, "SELECT no,nama_menu FROM tb_daftar_menu");
                                     </td>
                                     <td>
                                         <div class="d-flex">
-                                            <button class="<?php echo (!empty($row['id_bayar'])) ? "btn btn-secondary btn-sm me-1 disabled" : "btn btn-warning btn-sm me-1" ; ?>" data-bs-toggle="modal" data-bs-target="#ModalEdit<?php echo $row['id_list_order'] ?>"><i class="bi bi-pencil-fill"></i></button>
-                                            <button class="<?php echo (!empty($row['id_bayar'])) ? "btn btn-secondary btn-sm me-1 disabled" : "btn btn-danger btn-sm me-1" ; ?>" data-bs-toggle="modal" data-bs-target="#ModalDelete<?php echo $row['id_list_order'] ?>"><i class="bi bi-trash-fill"></i></button>
+                                            <button class="<?php echo (!empty($row['id_bayar'])) ? "btn btn-secondary btn-sm me-1 disabled" : "btn btn-warning btn-sm me-1"; ?>" data-bs-toggle="modal" data-bs-target="#ModalEdit<?php echo $row['id_list_order'] ?>"><i class="bi bi-pencil-fill"></i></button>
+                                            <button class="<?php echo (!empty($row['id_bayar'])) ? "btn btn-secondary btn-sm me-1 disabled" : "btn btn-danger btn-sm me-1"; ?>" data-bs-toggle="modal" data-bs-target="#ModalDelete<?php echo $row['id_list_order'] ?>"><i class="bi bi-trash-fill"></i></button>
                                         </div>
                                     </td>
                                 </tr>
@@ -380,8 +376,8 @@ $select_menu = mysqli_query($conn, "SELECT no,nama_menu FROM tb_daftar_menu");
             }
             ?>
             <div>
-                <button class="<?php echo (!empty($row['id_bayar'])) ? "btn btn-secondary disabled" : "btn btn-success" ; ?>" data-bs-toggle="modal" data-bs-target="#tambahItem"><i class="bi bi-plus-circle-fill"></i> Item</button>
-                <button class="<?php echo (!empty($row['id_bayar'])) ? "btn btn-secondary disabled" : "btn btn-primary" ; ?>" data-bs-toggle="modal" data-bs-target="#bayar"><i class="bi bi-currency-exchange"></i> Bayar</button>
+                <button class="<?php echo (!empty($row['id_bayar'])) ? "btn btn-secondary disabled" : "btn btn-success"; ?>" data-bs-toggle="modal" data-bs-target="#tambahItem"><i class="bi bi-plus-circle-fill"></i> Item</button>
+                <button class="<?php echo (!empty($row['id_bayar'])) ? "btn btn-secondary disabled" : "btn btn-primary"; ?>" data-bs-toggle="modal" data-bs-target="#bayar"><i class="bi bi-currency-exchange"></i> Bayar</button>
             </div>
         </div>
     </div>

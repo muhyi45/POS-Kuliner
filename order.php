@@ -1,5 +1,21 @@
 <?php
 include "proses/connect.php";
+
+
+function getRandomString($n)
+{
+    $characters = '012345678';
+    $randomString = '';
+
+    for ($i = 0; $i < $n; $i++) {
+        $index = rand(0, strlen($characters) - 1);
+        $randomString .= $characters[$index];
+    }
+
+    return $randomString;
+}
+
+$kode = getRandomString(10);
 date_default_timezone_set('Asia/Jakarta');
 $query = mysqli_query($conn, "SELECT tb_order.*,tb_bayar.*,nama, SUM(harga*jumlah) AS harganya FROM tb_order
     LEFT JOIN tb_user ON tb_user.id = tb_order.pelayan
@@ -10,6 +26,7 @@ $query = mysqli_query($conn, "SELECT tb_order.*,tb_bayar.*,nama, SUM(harga*jumla
 while ($record = mysqli_fetch_array($query)) {
     $result[] = $record;
 }
+
 
 // $select_kat_menu = mysqli_query($conn, "SELECT id_kat_menu,kategori_menu FROM tb_kategori_menu");
 ?>
@@ -37,7 +54,8 @@ while ($record = mysqli_fetch_array($query)) {
                                 <div class="row">
                                     <div class="col-lg-3">
                                         <div class="form-floating mb-3">
-                                            <input type="text" class="form-control" id="kode" name="kode_order" value="<?php echo date('ymdHi') . rand(100, 999) ?>" readonly>
+                                        <input type="text" class="form-control" id="kode"  value="<?php echo $kode ?>" readonly>
+                                            <input type="text" class="form-control" id="kode" name="kode_order" value="<?php echo  $kode ?>" hidden>
                                             <label for="kode">Kode Order</label>
                                             <div class="invalid-feedback">
                                                 Masukan Kode Order
@@ -187,7 +205,7 @@ while ($record = mysqli_fetch_array($query)) {
                                         <?php echo $no++ ?>
                                     </th>
                                     <td>
-                                        <?php echo $row['id_order'] ?>
+                                        <?php echo $row['kode_order'] ?>
                                     </td>
                                     <td>
                                         <?php echo $row['pelanggan'] ?>

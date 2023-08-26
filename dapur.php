@@ -40,7 +40,7 @@ $select_menu = mysqli_query($conn, "SELECT no,nama_menu FROM tb_daftar_menu");
                                 </div>
                                 <div class="modal-body">
                                     <form class="needs-validation" novalidate action="proses/proses_terima_orderitem.php" method="POST">
-                                        <input type="hidden" name="id" value="<?php echo $row['$id_list_order'] ?>">
+                                        <input type="hidden" name="id" value="<?php echo $row['id_list_order'] ?>">
                                         <input type="hidden" name="kode_order" value="<?php echo $kode ?>">
                                         <div class="row">
                                             <div class="col-lg-8">
@@ -103,7 +103,7 @@ $select_menu = mysqli_query($conn, "SELECT no,nama_menu FROM tb_daftar_menu");
                                 </div>
                                 <div class="modal-body">
                                     <form class="needs-validation" novalidate action="proses/proses_siapsaji_orderitem.php" method="POST">
-                                        <input type="hidden" name="id" value="<?php echo $row['$id_list_order'] ?>">
+                                        <input type="hidden" name="id" value="<?php echo $row['id_list_order'] ?>">
                                         <input type="hidden" name="kode_order" value="<?php echo $kode ?>">
                                         <div class="row">
                                             <div class="col-lg-8">
