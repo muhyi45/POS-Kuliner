@@ -11,7 +11,7 @@ $records = mysqli_fetch_array($query);
             <ul class="navbar-nav">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <?php echo $hasil['username']; ?>
+                        <?php echo $hasil['nama']; ?>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end mt-2">
                         <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#ModalUbahProfile"><i class="bi bi-person-circle"></i> Profile</a></li>

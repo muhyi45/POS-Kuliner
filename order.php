@@ -19,9 +19,9 @@ $kode = getRandomString(10);
 date_default_timezone_set('Asia/Jakarta');
 $query = mysqli_query($conn, "SELECT tb_order.*,tb_bayar.*,nama, SUM(harga*jumlah) AS harganya FROM tb_order
     LEFT JOIN tb_user ON tb_user.id = tb_order.pelayan
-    LEFT JOIN tb_list_order ON tb_list_order.kode_order = tb_order.id_order
+    LEFT JOIN tb_list_order ON tb_list_order.kode_order = tb_order.kode_order
     LEFT JOIN tb_daftar_menu ON tb_daftar_menu.no = tb_list_order.menu
-    LEFT JOIN tb_bayar ON tb_bayar.id_bayar = tb_order.id_order
+    LEFT JOIN tb_bayar ON tb_bayar.id_bayar = tb_order.kode_order
     GROUP BY id_order ORDER BY waktu_order DESC");
 while ($record = mysqli_fetch_array($query)) {
     $result[] = $record;
@@ -228,8 +228,8 @@ while ($record = mysqli_fetch_array($query)) {
                                     <td>
                                         <div class="d-flex">
                                             <a class="btn btn-info btn-sm me-1" href="./?x=orderitem&order= <?php echo $row['id_order'] . "&meja=" . $row['meja'] . "&pelanggan=" . $row['pelanggan'] ?>"><i class="bi bi-eye-fill"></i></a>
-                                            <button class="<?php echo (!empty($row['id_bayar'])) ? "btn btn-secondary disabled" : "btn btn-warning btn-sm me-1" ; ?>" data-bs-toggle="modal" data-bs-target="#ModalEdit<?php echo $row['id_order'] ?>"><i class="bi bi-pencil-fill"></i></button>
-                                            <button class="<?php echo (!empty($row['id_bayar'])) ? "btn btn-secondary disabled" : "btn btn-danger btn-sm me-1" ; ?>" data-bs-toggle="modal" data-bs-target="#ModalDelete<?php echo $row['id_order'] ?>"><i class="bi bi-trash-fill"></i></button>
+                                            <button class="<?php echo (!empty($row['id_bayar'])) ? "btn btn-secondary btn-sm disabled" : "btn btn-warning btn-sm me-1" ; ?>" data-bs-toggle="modal" data-bs-target="#ModalEdit<?php echo $row['id_order'] ?>"><i class="bi bi-pencil-fill"></i></button>
+                                            <button class="<?php echo (!empty($row['id_bayar'])) ? "btn btn-secondary btn-sm disabled" : "btn btn-danger btn-sm" ; ?>" data-bs-toggle="modal" data-bs-target="#ModalDelete<?php echo $row['id_order'] ?>"><i class="bi bi-trash-fill"></i></button>
                                         </div>
                                     </td>
                                 </tr>

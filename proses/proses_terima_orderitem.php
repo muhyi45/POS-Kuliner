@@ -2,7 +2,6 @@
 session_start();
 include "connect.php";
 $id = (isset($_POST['id'])) ? htmlentities($_POST['id']) : "";
-var_dump($id);
 $jumlah = (isset($_POST['jumlah'])) ? htmlentities($_POST['jumlah']) : "";
 $catatan = (isset($_POST['catatan'])) ? htmlentities($_POST['catatan']) : "";
 $message = "";

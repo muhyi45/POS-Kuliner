@@ -2,9 +2,9 @@
 include "proses/connect.php";
 
 $query = mysqli_query($conn, "SELECT * FROM tb_list_order
-    LEFT JOIN tb_order ON tb_order.id_order = tb_list_order.kode_order
+    LEFT JOIN tb_order ON tb_order.kode_order = tb_list_order.kode_order
     LEFT JOIN tb_daftar_menu ON tb_daftar_menu.no = tb_list_order.menu
-    LEFT JOIN tb_bayar ON tb_bayar.id_bayar = tb_order.id_order
+    LEFT JOIN tb_bayar ON tb_bayar.id_bayar = tb_order.kode_order
     ORDER BY waktu_order ASC
     ");
 

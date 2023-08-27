@@ -11,7 +11,7 @@ while ($record = mysqli_fetch_assoc($queryDetailOrder)) {
     $kode = $record['kode_order'];
 }
 
-$query = mysqli_query($conn, "SELECT *, (tb_list_order.jumlah * tb_daftar_menu.harga) as harganya FROM tb_list_order LEFT JOIN tb_daftar_menu ON tb_list_order.menu = tb_daftar_menu.no where kode_order = '$kode'");
+$query = mysqli_query($conn, "SELECT *, (tb_list_order.jumlah * tb_daftar_menu.harga) as harganya FROM tb_list_order LEFT JOIN tb_daftar_menu ON tb_list_order.menu = tb_daftar_menu.no LEFT JOIN tb_bayar ON tb_bayar.id_bayar = kode_order where kode_order = '$kode'");
 
 $result = []; // Initialize the $result array
 while ($record = mysqli_fetch_array($query)) {
@@ -280,13 +280,15 @@ $select_menu = mysqli_query($conn, "SELECT no, nama_menu FROM tb_daftar_menu");
                                 <span class="text-danger fs-5 fw-semibold">Apakah Anda Yakin Ingin Melakukan Pembayaran?</span>
                                 <form class="needs-validation" novalidate action="proses/proses_bayar.php" method="POST">
                                     <input type="hidden" name="kode_order" value="<?php echo $kode ?>" id="">
+                                    <input type="hidden" name="id" value="<?php echo $row['id_list_order'] ?>" id="">
+                                    <input type="hidden" name="id_order" value="<?php echo $_GET['order']  ?>" id="">
                                     <input type="hidden" name="meja" value="<?php echo $meja ?>" id="">
                                     <input type="hidden" name="pelanggan" value="<?php echo $pelanggan ?>" id="">
                                     <input type="hidden" name="total" value="<?php echo $total ?>" id="">
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="form-floating mb-3">
-                                                <input type="number" class="form-control" id="uang" placeholder="Nominal Uang" name="jumlah" required>
+                                                <input type="number" class="form-control" id="uang" placeholder="Nominal Uang" name="uang" required>
                                                 <label for="floatingInput">Nominal Uang</label>
                                                 <div class="invalid-feedback">
                                                     Masukan Nominal Uang
