@@ -30,23 +30,23 @@ while ($record = mysqli_fetch_array($query)) {
 
 // $select_kat_menu = mysqli_query($conn, "SELECT id_kat_menu,kategori_menu FROM tb_kategori_menu");
 ?>
-<div class="col-lg-9 mt-2">
-    <div class="card">
-        <div class="card-header">
-            Halaman Order Item
+<div class="col-lg-9 mt-2" style="background-color:#f3ddd7">
+    <div class="card" style="background-color:#a4826e">
+        <div class="card-header" style="color: #fef2e7;">
+            <h3> Halaman Order Item </h3>
         </div>
-        <div class="card-body">
+        <div class="card-body" style="background-color:#a4826e">
             <div class="row">
                 <div class="col d-flex justify-content-end">
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ModalTambahUser">Tambah Order</button>
+                    <button class="btn mb-2" data-bs-toggle="modal" data-bs-target="#ModalTambahUser" style="background-color: #664b4a; color:#fef2e7">Tambah Order</button>
                 </div>
             </div>
             <!-- Modal Tambah Order Baru-->
             <div class="modal fade" id="ModalTambahUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg modal-fullscreen-md-down">
-                    <div class="modal-content">
+                    <div class="modal-content" style="background-color:#a4826e">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Order Makanan dan Minuman</h1>
+                            <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: #664b4a;">Tambah Order Makanan dan Minuman</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -54,7 +54,7 @@ while ($record = mysqli_fetch_array($query)) {
                                 <div class="row">
                                     <div class="col-lg-3">
                                         <div class="form-floating mb-3">
-                                        <input type="text" class="form-control" id="kode"  value="<?php echo $kode ?>" readonly>
+                                        <input style="color: #664b4a;" type="text" class="form-control" id="kode"  value="<?php echo $kode ?>" readonly>
                                             <input type="text" class="form-control" id="kode" name="kode_order" value="<?php echo  $kode ?>" hidden>
                                             <label for="kode">Kode Order</label>
                                             <div class="invalid-feedback">
@@ -64,7 +64,7 @@ while ($record = mysqli_fetch_array($query)) {
                                     </div>
                                     <div class="col-lg-2">
                                         <div class="form-floating mb-3">
-                                            <input type="number" class="form-control" id="meja" placeholder="Nomor Meja" name="meja" required>
+                                            <input style="color: #664b4a;" type="number" class="form-control" id="meja" placeholder="Nomor Meja" name="meja" required>
                                             <label for="meja">Meja</label>
                                             <div class="invalid-feedback">
                                                 Masukan Meja
@@ -73,7 +73,7 @@ while ($record = mysqli_fetch_array($query)) {
                                     </div>
                                     <div class="col-lg-7">
                                         <div class="form-floating mb-3">
-                                            <input type="text" class="form-control" id="pelanggan" placeholder="Nama Pelanggan" name="pelanggan" required>
+                                            <input style="color: #664b4a;" type="text" class="form-control" id="pelanggan" placeholder="Nama Pelanggan" name="pelanggan" required>
                                             <label for="pelanggan">Nama Pelanggan</label>
                                             <div class="invalid-feedback">
                                                 Masukan Nama Pelanggan
@@ -83,7 +83,7 @@ while ($record = mysqli_fetch_array($query)) {
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary" name="input_order_validate" value="12345">Buat Order</button>
+                                    <button type="submit" class="btn" name="input_order_validate" value="12345" style="background-color: #664b4a; color:#fef2e7">Buat Order</button>
                                 </div>
                             </form>
                         </div>
@@ -105,9 +105,9 @@ while ($record = mysqli_fetch_array($query)) {
                     <!-- Modal Edit Menu-->
                     <div class="modal fade" id="ModalEdit<?php echo $row['id_order'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-xl modal-fullscreen-md-down">
-                            <div class="modal-content">
+                            <div class="modal-content" style="background-color:#a4826e">
                                 <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Menu Makanan dan Minuman</h1>
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: #664b4a;">Edit Order Makanan dan Minuman</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
@@ -115,7 +115,7 @@ while ($record = mysqli_fetch_array($query)) {
                                         <div class="row">
                                             <div class="col-lg-3">
                                                 <div class="form-floating mb-3">
-                                                    <input readonly type="text" class="form-control" id="kode" name="kode_order" value="<?php echo $row['id_order'] ?>" readonly>
+                                                    <input style="color: #664b4a;" readonly type="text" class="form-control" id="kode" name="kode_order" value="<?php echo $row['id_order'] ?>" readonly>
                                                     <label for="kode">Kode Order</label>
                                                     <div class="invalid-feedback">
                                                         Masukan Kode Order
@@ -124,7 +124,7 @@ while ($record = mysqli_fetch_array($query)) {
                                             </div>
                                             <div class="col-lg-2">
                                                 <div class="form-floating mb-3">
-                                                    <input type="number" class="form-control" id="meja" placeholder="Nomor Meja" name="meja" required value="<?php echo $row['meja'] ?>">
+                                                    <input style="color: #664b4a;" type="number" class="form-control" id="meja" placeholder="Nomor Meja" name="meja" required value="<?php echo $row['meja'] ?>">
                                                     <label for="meja">Meja</label>
                                                     <div class="invalid-feedback">
                                                         Masukan Meja
@@ -133,7 +133,7 @@ while ($record = mysqli_fetch_array($query)) {
                                             </div>
                                             <div class="col-lg-7">
                                                 <div class="form-floating mb-3">
-                                                    <input type="text" class="form-control" id="pelanggan" placeholder="Nama Pelanggan" name="pelanggan" required value="<?php echo $row['pelanggan'] ?>">
+                                                    <input style="color: #664b4a;" type="text" class="form-control" id="pelanggan" placeholder="Nama Pelanggan" name="pelanggan" required value="<?php echo $row['pelanggan'] ?>">
                                                     <label for="pelanggan">Nama Pelanggan</label>
                                                     <div class="invalid-feedback">
                                                         Masukan Nama Pelanggan
@@ -143,7 +143,7 @@ while ($record = mysqli_fetch_array($query)) {
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-primary" name="edit_order_validate" value="12345">Simpan</button>
+                                            <button type="submit" class="btn" name="edit_order_validate" value="12345" style="background-color: #664b4a; color:#fef2e7">Edit Order</button>
                                         </div>
                                     </form>
                                 </div>
@@ -156,15 +156,15 @@ while ($record = mysqli_fetch_array($query)) {
                     <!-- Modal Hapus-->
                     <div class="modal fade" id="ModalDelete<?php echo $row['id_order'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-md modal-fullscreen-md-down">
-                            <div class="modal-content">
+                            <div class="modal-content" style="background-color:#a4826e">
                                 <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Hapus Data Order</h1>
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: #664b4a;">Hapus Data Order</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
                                     <form class="needs-validation" novalidate action="proses/proses_delete_order.php" method="POST">
                                         <input type="hidden" value="<?php echo $row['id_order'] ?>" name="kode_order">
-                                        <div class="col-lg-12">
+                                        <div class="col-lg-12" style="color: white;">
                                             Apakah anda ingin menghapus order atas nama <b><?php echo $row['pelanggan'] ?></b> dengan kode order <b><?php echo $row['id_order'] ?></b>
                                         </div>
                                         <div class="modal-footer">
@@ -181,7 +181,7 @@ while ($record = mysqli_fetch_array($query)) {
                 }
                 ?>
                 <div class="table-responsive">
-                    <table class="table table-hover">
+                    <table class="table table-danger">
                         <thead>
                             <tr class="text-nowrap">
                                 <th scope="col">No</th>

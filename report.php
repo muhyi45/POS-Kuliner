@@ -12,12 +12,12 @@ while ($record = mysqli_fetch_array($query)) {
 
 // $select_kat_menu = mysqli_query($conn, "SELECT id_kat_menu,kategori_menu FROM tb_kategori_menu");
 ?>
-<div class="col-lg-9 mt-2">
-    <div class="card">
-        <div class="card-header">
-            Halaman Report
+<div class="col-lg-9 mt-2" style="background-color:#f3ddd7">
+    <div class="card" style="background-color:#a4826e">
+        <div class="card-header" style="color: #fef2e7;">
+            <h3>Halaman Report</h3>
         </div>
-        <div class="card-body">
+        <div class="card-body" style="background-color:#a4826e">
             <?php
             if (empty($result)) {
                 echo "Data menu makanan atau minuman tidak ada";
@@ -29,7 +29,7 @@ while ($record = mysqli_fetch_array($query)) {
                 }
                 ?>
                 <div class="table-responsive">
-                    <table class="table table-hover">
+                    <table class="table table-danger">
                         <thead>
                             <tr class="text-nowrap">
                                 <th scope="col">No</th>

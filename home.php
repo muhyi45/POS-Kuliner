@@ -7,7 +7,7 @@ while ($row = mysqli_fetch_array($query)) {
 ?>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<div class="col-lg-9 mt-2">
+<div class="col-lg-9 mt-2" style="background-color:#f3ddd7;">
     <!---- Carousel ----->
     <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
@@ -57,21 +57,22 @@ while ($row = mysqli_fetch_array($query)) {
 
 
     <!----- Judul ----->
-    <div class="card mt-4 border-0 bg-light">
+    <div class="card mt-4 border-0" style="background-color:#a4826e">
         <div class="card-header text-center">
             Home
         </div>
         <div class="card-body text-center">
-            <h5 class="card-title">Ini adalah Bagian Home</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content. Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit ipsam possimus harum molestiae, amet odio minima hic laboriosam ad delectus? Voluptatem amet ea illo ullam ut repudiandae, explicabo modi eum fugiat! Dolores, voluptates. Placeat, fugit iure saepe nostrum asperiores obcaecati vel odit, aspernatur nam debitis sed, ex provident corrupti sint.</p>
-            <a href="order" class="btn btn-primary">Buat Order</a>
+            <h5 class="card-title">Sistem Informasi Kuliner</h5>
+            <p class="card-text">Rumah makan adalah istilah umum untuk menyebut usaha gastronomi yang menyajikan hidangankepada masyarakat dan menyediakan tempat untuk menikmati hidangan tersebut serta menetapkan tarif tertentu untuk makanan dan pelayanannya. Sistem Informasi Restoran merupakan serangkaian sistem yang digunakan untuk menunjang atau mendukung kelancaran penyimpanan data-data penjualan menu makanan. Tujuan perancangan sistem ini yaitu memberikan kemudahan bagi instansi khususnya di bidang restoran dalam pengimpanan nota-nota struk penjualan menu makanan.
+</p>
+            <a href="order" class="btn" style="background-color: #664b4a; color:#fef2e7">Buat Order</a>
         </div>
     </div>
     <!------ Akhir Judul ------->
 
 
     <!----- Grafik ----->
-    <div class="card mt-4 border-0 bg-light">
+    <!-- <div class="card mt-4 border-0 bg-light">
         <div class="card-header text-center">
             Home
         </div>
@@ -102,6 +103,6 @@ while ($row = mysqli_fetch_array($query)) {
                 });
             </script>
         </div>
-    </div>
+    </div> -->
     <!------ Akhir Grafik ------->
 </div>

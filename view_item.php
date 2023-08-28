@@ -18,10 +18,10 @@ while ($record = mysqli_fetch_array($query)) {
 $select_menu = mysqli_query($conn, "SELECT no,nama_menu FROM tb_daftar_menu");
 ?>
 
-<div class="col-lg-9 mt-2">
-    <div class="card">
-        <div class="card-header">
-            Halaman View Item
+<div class="col-lg-9 mt-2" style="background-color:#f3ddd7">
+    <div class="card" style="background-color:#a4826e">
+        <div class="card-header" style="color: #fef2e7;">
+            <h3>Halaman View Item</h3>
         </div>
         <div class="card-body">
             <a href="report" class="btn btn-info mb-3"><i class="bi bi-arrow-left-circle-fill"></i> Back</a>
@@ -59,7 +59,7 @@ $select_menu = mysqli_query($conn, "SELECT no,nama_menu FROM tb_daftar_menu");
                 ?>
 
                 <div class="table-responsive">
-                    <table class="table table-hover">
+                    <table class="table table-danger">
                         <thead>
                             <tr class="text-nowrap">
                                 <th scope="col">Menu</th>

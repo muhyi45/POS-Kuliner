@@ -15,12 +15,12 @@ while ($record = mysqli_fetch_array($query)) {
 $select_menu = mysqli_query($conn, "SELECT no,nama_menu FROM tb_daftar_menu");
 ?>
 
-<div class="col-lg-9 mt-2">
-    <div class="card">
-        <div class="card-header">
-            Halaman Dapur
+<div class="col-lg-9 mt-2" style="background-color:#f3ddd7">
+    <div class="card" style="background-color:#a4826e">
+        <div class="card-header" style="color: #fef2e7;">
+            <h3>Halaman Dapur</h3>
         </div>
-        <div class="card-body">
+        <div class="card-body" style="background-color:#a4826e">
 
             <?php
             if (empty($result)) {
@@ -33,9 +33,9 @@ $select_menu = mysqli_query($conn, "SELECT no,nama_menu FROM tb_daftar_menu");
                     <!-- Modal Terima Dapur-->
                     <div class="modal fade" id="terima<?php echo $row['id_list_order'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg modal-fullscreen-md-down">
-                            <div class="modal-content">
+                            <div class="modal-content" style="background-color:#a4826e">
                                 <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Menu Makanan dan Minuman</h1>
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: #664b4a;">Terima Orderan</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
@@ -45,7 +45,7 @@ $select_menu = mysqli_query($conn, "SELECT no,nama_menu FROM tb_daftar_menu");
                                         <div class="row">
                                             <div class="col-lg-8">
                                                 <div class="form-floating mb-3">
-                                                    <select disabled class="form-select" name="menu" id="">
+                                                    <select style="color: #664b4a;" disabled class="form-select" name="menu" id="">
                                                         <option selected hidden value="">Pilih Menu</option>
                                                         <?php
                                                         foreach ($select_menu as $value) {
@@ -65,7 +65,7 @@ $select_menu = mysqli_query($conn, "SELECT no,nama_menu FROM tb_daftar_menu");
                                             </div>
                                             <div class="col-lg-4">
                                                 <div class="form-floating mb-3">
-                                                    <input disabled type="number" class="form-control" id="floatingInput" placeholder="Jumlah Porsi" name="jumlah" required value="<?php echo $row['jumlah'] ?>">
+                                                    <input style="color: #664b4a;" disabled type="number" class="form-control" id="floatingInput" placeholder="Jumlah Porsi" name="jumlah" required value="<?php echo $row['jumlah'] ?>">
                                                     <label for="floatingInput">Jumlah Porsi</label>
                                                     <div class="invalid-feedback">
                                                         Masukan Jumlah Porsi
@@ -76,14 +76,14 @@ $select_menu = mysqli_query($conn, "SELECT no,nama_menu FROM tb_daftar_menu");
                                         <div class="row">
                                             <div class="col-lg-12 mb-3">
                                                 <div class="form-floating">
-                                                    <input type="text" class="form-control" id="floatingInput" placeholder="Catatan" name="catatan" value="<?php echo $row['catatan'] ?>">
+                                                    <input style="color: #664b4a;" type="text" class="form-control" id="floatingInput" placeholder="Catatan" name="catatan" value="<?php echo $row['catatan'] ?>">
                                                     <label for="floatingPassword">Catatan</label>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-primary" name="terima_orderitem_validate" value="12345678">Terima</button>
+                                            <button type="submit" class="btn" name="terima_orderitem_validate" value="12345678" style="background-color: #664b4a; color:#fef2e7">Terima</button>
                                         </div>
                                     </form>
                                 </div>
@@ -96,9 +96,9 @@ $select_menu = mysqli_query($conn, "SELECT no,nama_menu FROM tb_daftar_menu");
                     <!-- Modal Siap Saji-->
                     <div class="modal fade" id="siapsaji<?php echo $row['id_list_order'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg modal-fullscreen-md-down">
-                            <div class="modal-content">
+                            <div class="modal-content" style="background-color:#a4826e">
                                 <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Siap Saji</h1>
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: #664b4a;">Siap Saji</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
@@ -108,7 +108,7 @@ $select_menu = mysqli_query($conn, "SELECT no,nama_menu FROM tb_daftar_menu");
                                         <div class="row">
                                             <div class="col-lg-8">
                                                 <div class="form-floating mb-3">
-                                                    <select disabled class="form-select" name="menu" id="">
+                                                    <select style="color: #664b4a;" disabled class="form-select" name="menu" id="">
                                                         <option selected hidden value="">Pilih Menu</option>
                                                         <?php
                                                         foreach ($select_menu as $value) {
@@ -128,7 +128,7 @@ $select_menu = mysqli_query($conn, "SELECT no,nama_menu FROM tb_daftar_menu");
                                             </div>
                                             <div class="col-lg-4">
                                                 <div class="form-floating mb-3">
-                                                    <input disabled type="number" class="form-control" id="floatingInput" placeholder="Jumlah Porsi" name="jumlah" required value="<?php echo $row['jumlah'] ?>">
+                                                    <input style="color: #664b4a;" disabled type="number" class="form-control" id="floatingInput" placeholder="Jumlah Porsi" name="jumlah" required value="<?php echo $row['jumlah'] ?>">
                                                     <label for="floatingInput">Jumlah Porsi</label>
                                                     <div class="invalid-feedback">
                                                         Masukan Jumlah Porsi
@@ -139,14 +139,14 @@ $select_menu = mysqli_query($conn, "SELECT no,nama_menu FROM tb_daftar_menu");
                                         <div class="row">
                                             <div class="col-lg-12 mb-3">
                                                 <div class="form-floating">
-                                                    <input type="text" class="form-control" id="floatingInput" placeholder="Catatan" name="catatan" value="<?php echo $row['catatan'] ?>">
+                                                    <input style="color: #664b4a;" type="text" class="form-control" id="floatingInput" placeholder="Catatan" name="catatan" value="<?php echo $row['catatan'] ?>">
                                                     <label for="floatingPassword">Catatan</label>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-primary" name="siapsaji_orderitem_validate" value="12345678">Siap Saji</button>
+                                            <button type="submit" class="btn" name="siapsaji_orderitem_validate" value="12345678" style="background-color: #664b4a; color:#fef2e7">Siap Saji</button>
                                         </div>
                                     </form>
                                 </div>
@@ -159,7 +159,7 @@ $select_menu = mysqli_query($conn, "SELECT no,nama_menu FROM tb_daftar_menu");
                 }
                 ?>
                 <div class="table-responsive">
-                    <table class="table table-hover">
+                    <table class="table table-danger">
                         <thead>
                             <tr class="text-nowrap">
                                 <th scope="col">No</th>
