@@ -33,7 +33,7 @@ while ($record = mysqli_fetch_array($query)) {
 <div class="col-lg-9 mt-2" style="background-color:#f3ddd7">
     <div class="card" style="background-color:#a4826e">
         <div class="card-header" style="color: #fef2e7;">
-            <h3> Halaman Order Item </h3>
+            <h3> Halaman Order</h3>
         </div>
         <div class="card-body" style="background-color:#a4826e">
             <div class="row">

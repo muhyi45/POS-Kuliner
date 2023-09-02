@@ -53,7 +53,7 @@ while ($record = mysqli_fetch_array($query)) {
                                         <?php echo $no++ ?>
                                     </th>
                                     <td>
-                                        <?php echo $row['id_order'] ?>
+                                        <?php echo $row['kode_order'] ?>
                                     </td>
                                     <td>
                                         <?php echo $row['waktu_order'] ?>

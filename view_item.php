@@ -1,23 +1,25 @@
 <?php
 include "proses/connect.php";
 
-$query = mysqli_query($conn, "SELECT *, SUM(harga*jumlah) AS harganya FROM tb_list_order
-    LEFT JOIN tb_order ON tb_order.id_order = tb_list_order.kode_order
-    LEFT JOIN tb_daftar_menu ON tb_daftar_menu.no = tb_list_order.menu
-    LEFT JOIN tb_bayar ON tb_bayar.id_bayar = tb_order.id_order
-    GROUP BY id_list_order
-    HAVING tb_list_order.kode_order = $_GET[order]");
-
+$queryDetailOrder = mysqli_query($conn, "SELECT * FROM tb_order WHERE tb_order.id_order = '" . $_GET['order'] . "'");
 
 $meja = $_GET['meja'];
 $pelanggan = $_GET['pelanggan'];
-$kode = $_GET['order'];
+$kode = "";
+while ($record = mysqli_fetch_assoc($queryDetailOrder)) {
+    // $kode = $record; // This line should be replaced with the following line
+    $kode = $record['kode_order'];
+}
+
+$query = mysqli_query($conn, "SELECT *, (tb_list_order.jumlah * tb_daftar_menu.harga) as harganya FROM tb_list_order LEFT JOIN tb_daftar_menu ON tb_list_order.menu = tb_daftar_menu.no LEFT JOIN tb_bayar ON tb_bayar.id_bayar = kode_order where kode_order = '$kode'");
+
+$result = []; // Initialize the $result array
 while ($record = mysqli_fetch_array($query)) {
     $result[] = $record;
 }
-$select_menu = mysqli_query($conn, "SELECT no,nama_menu FROM tb_daftar_menu");
-?>
 
+$select_menu = mysqli_query($conn, "SELECT no, nama_menu FROM tb_daftar_menu");
+?>
 <div class="col-lg-9 mt-2" style="background-color:#f3ddd7">
     <div class="card" style="background-color:#a4826e">
         <div class="card-header" style="color: #fef2e7;">
@@ -45,7 +47,7 @@ $select_menu = mysqli_query($conn, "SELECT no,nama_menu FROM tb_daftar_menu");
                     </div>
                 </div>
             </div>
-
+            
             <?php
             if (empty($result)) {
                 echo "Data menu makanan atau minuman tidak ada";
@@ -54,9 +56,14 @@ $select_menu = mysqli_query($conn, "SELECT no,nama_menu FROM tb_daftar_menu");
 
             ?>
 
+
+
                 <?php
                 }
                 ?>
+
+                
+
 
                 <div class="table-responsive">
                     <table class="table table-danger">
@@ -87,11 +94,11 @@ $select_menu = mysqli_query($conn, "SELECT no,nama_menu FROM tb_daftar_menu");
                                     </td>
                                     <td>
                                         <?php
-                                            if($row['status']==1){
-                                                echo "<span class='badge text-bg-warning'>Masuk ke dapur</span>";
-                                            }elseif($row['status']==2){
-                                                echo "<span class='badge text-bg-primary'>Siap saji</span>";
-                                            }
+                                        if ($row['status'] == 1) {
+                                            echo "<span class='badge text-bg-warning'>Masuk ke dapur</span>";
+                                        } elseif ($row['status'] == 2) {
+                                            echo "<span class='badge text-bg-primary'>Siap saji</span>";
+                                        }
                                         ?>
                                     </td>
                                     <td>

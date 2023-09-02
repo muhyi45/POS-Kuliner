@@ -6,7 +6,6 @@ while ($row = mysqli_fetch_array($query)) {
 }
 ?>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 <div class="col-lg-9 mt-2" style="background-color:#f3ddd7;">
     <!---- Carousel ----->
     <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
